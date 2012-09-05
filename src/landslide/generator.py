@@ -376,9 +376,12 @@ class Generator(object):
             if slide_vars['level'] and slide_vars['level'] <= TOC_MAX_LEVEL:
                 self.add_toc_entry(slide_vars['title'], slide_vars['level'],
                                    slide_number)
-            else:
+            #else:
                 # Put something in the TOC even if it doesn't have a title or level
-                self.add_toc_entry(u"-", 1, slide_number)
+                # JFL: why doing such a thing ? if there is no title, the
+                # slide should not be in the TOC. Moreover, it adds a "-" for
+                # slides that has not the requiored TOC_MAX_LEVEL
+                # self.add_toc_entry(u"-", 1, slide_number)
 
         return {'head_title': head_title, 'num_slides': str(self.num_slides),
                 'slides': slides, 'toc': self.toc, 'embed': self.embed,
